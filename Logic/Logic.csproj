@@ -49,6 +49,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileLogic\CreateOrUpdateNom.cs" />
     <Compile Include="FileLogic\ReadLasts.cs" />
     <Compile Include="FileLogic\ReadNom.cs" />
     <Compile Include="IntegrationLogic\AuthLogic.cs" />
