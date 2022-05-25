@@ -49,15 +49,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileLogic\CreateOrUpdateNom.cs" />
+    <Compile Include="FileLogic\NomChangeController.cs" />
     <Compile Include="FileLogic\ReadLasts.cs" />
     <Compile Include="FileLogic\ReadNom.cs" />
+    <Compile Include="FileLogic\TradeTicketController.cs" />
     <Compile Include="IntegrationLogic\AuthLogic.cs" />
     <Compile Include="IntegrationLogic\ReadLastsFrom1C.cs" />
     <Compile Include="IntegrationLogic\ReadNomFrom1C.cs" />
     <Compile Include="Models\HelperModels\ExcelCellParameters.cs" />
     <Compile Include="Models\LastModel.cs" />
     <Compile Include="Models\NomModel.cs" />
+    <Compile Include="Models\TradeTicketModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
