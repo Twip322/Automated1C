@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace Logic.IntegrationLogic
 {
@@ -9,12 +10,11 @@ namespace Logic.IntegrationLogic
     {
         public БромКлиент Auth(string Login,string Password)
         {
-            dynamic client = new БромКлиент($@"
-	            Публикация	= http://localhost/test;
+            БромКлиент client = new БромКлиент($@"
+	            Публикация	= http://192.168.1.50:8080/test;
 	            Пользователь	= {Login};
 	            Пароль		= {Password}
             ");
-            dynamic инфо = client.ПолучитьИнформациюОСистеме();
             return client;
         }
     }

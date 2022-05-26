@@ -16,18 +16,20 @@ namespace AppNetCore
         [STAThread]
         static void Main()
         {
-            Application.SetHighDpiMode(HighDpiMode.SystemAware);
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormAuthorization());
-            if(!File.Exists(FileSettings.SettingsFilePath))
+            if (!File.Exists(FileSettings.SettingsFilePath))
             {
                 FileSettings.returnToDefaultSettings();
+                FileSettings.LoadSettings();
             }
             else
             {
                 FileSettings.LoadSettings();
             }
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new FormAuthorization());
+           
         }
     }
 }

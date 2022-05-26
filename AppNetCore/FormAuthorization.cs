@@ -42,11 +42,8 @@ namespace AppNetCore
             {
                 FormMain formMain = new FormMain();
                 this.Visible = false;
-                formMain.ShowDialog();
-                if(formMain.DialogResult == DialogResult.OK)
-                {
-                    Application.Exit();
-                }
+                formMain.Show();
+                
             }
         }
     }
