@@ -1,4 +1,4 @@
-﻿namespace Automated1C
+﻿namespace AppNetCore
 {
     partial class FormAuthorization
     {
@@ -38,56 +38,63 @@
             // labelPassword
             // 
             this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(12, 59);
+            this.labelPassword.Location = new System.Drawing.Point(14, 68);
+            this.labelPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(45, 13);
+            this.labelPassword.Size = new System.Drawing.Size(49, 15);
             this.labelPassword.TabIndex = 11;
             this.labelPassword.Text = "Пароль";
             // 
             // labelLogin
             // 
             this.labelLogin.AutoSize = true;
-            this.labelLogin.Location = new System.Drawing.Point(12, 12);
+            this.labelLogin.Location = new System.Drawing.Point(14, 14);
+            this.labelLogin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLogin.Name = "labelLogin";
-            this.labelLogin.Size = new System.Drawing.Size(38, 13);
+            this.labelLogin.Size = new System.Drawing.Size(41, 15);
             this.labelLogin.TabIndex = 10;
             this.labelLogin.Text = "Логин";
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(12, 79);
+            this.textBoxPassword.Location = new System.Drawing.Point(14, 91);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(308, 20);
+            this.textBoxPassword.Size = new System.Drawing.Size(359, 23);
             this.textBoxPassword.TabIndex = 9;
             this.textBoxPassword.UseSystemPasswordChar = true;
             // 
             // textBoxLogin
             // 
-            this.textBoxLogin.Location = new System.Drawing.Point(12, 36);
+            this.textBoxLogin.Location = new System.Drawing.Point(14, 42);
+            this.textBoxLogin.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBoxLogin.Name = "textBoxLogin";
-            this.textBoxLogin.Size = new System.Drawing.Size(308, 20);
+            this.textBoxLogin.Size = new System.Drawing.Size(359, 23);
             this.textBoxLogin.TabIndex = 8;
             // 
             // btnAutorisation
             // 
-            this.btnAutorisation.Location = new System.Drawing.Point(119, 123);
+            this.btnAutorisation.Location = new System.Drawing.Point(139, 142);
+            this.btnAutorisation.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAutorisation.Name = "btnAutorisation";
-            this.btnAutorisation.Size = new System.Drawing.Size(97, 23);
+            this.btnAutorisation.Size = new System.Drawing.Size(113, 27);
             this.btnAutorisation.TabIndex = 7;
             this.btnAutorisation.Text = "Авторизация";
             this.btnAutorisation.UseVisualStyleBackColor = true;
+            this.btnAutorisation.Click += new System.EventHandler(this.btnAutorisation_Click);
             // 
-            // FormAuthorization
+            // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(343, 161);
+            this.ClientSize = new System.Drawing.Size(400, 186);
             this.Controls.Add(this.labelPassword);
             this.Controls.Add(this.labelLogin);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxLogin);
             this.Controls.Add(this.btnAutorisation);
-            this.Name = "FormAuthorization";
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.Name = "Form1";
             this.Text = "Авторизация";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -103,3 +110,4 @@
         private System.Windows.Forms.Button btnAutorisation;
     }
 }
+

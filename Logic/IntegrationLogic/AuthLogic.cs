@@ -1,21 +1,21 @@
-﻿using System;
+﻿using ITworks.Brom;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using ITworks.Brom;
 
 namespace Logic.IntegrationLogic
 {
     public class AuthLogic
     {
-        public dynamic AuthInto1C(string Login, string Password)
+        public БромКлиент Auth(string Login,string Password)
         {
-            dynamic клиент = new БромКлиент($@"
-	        Публикация	= http://domainname.ru/publication_name;
-	        Пользователь	= {Login};
-	        Пароль		= {Password}");
-            return клиент;
+            dynamic client = new БромКлиент($@"
+	            Публикация	= http://localhost/test;
+	            Пользователь	= {Login};
+	            Пароль		= {Password}
+            ");
+            dynamic инфо = client.ПолучитьИнформациюОСистеме();
+            return client;
         }
     }
 }
