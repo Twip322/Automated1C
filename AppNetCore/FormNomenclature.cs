@@ -35,6 +35,7 @@ namespace AppNetCore
         private async void button1_Click(object sender, EventArgs e)
         {
             await readFromFile();
+            dataGridViewNomenclature.DataSource = read.Read(FileSettings.NomenclatureFilePath);
         }
     }
 }

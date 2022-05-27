@@ -7,6 +7,6 @@ namespace Logic.Settings
 {
     public static class Client
     {
-        public static dynamic bromClient { get; set; }
+        public static БромКлиент bromClient { get; set; }
     }
 }
