@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace Logic.FileLogic
 {
-    public class ReadNomenclature
+    public class NomenclatureFileController
     {
         public List<NomenclatureModel> Read(string fileName)
         {

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,7 @@ namespace AppNetCore
     {
         ReadNomenclatureFrom1C from1C = new ReadNomenclatureFrom1C();
         AuthLogic authLogic = new AuthLogic();
-        ReadNomenclature read = new ReadNomenclature();
+        NomenclatureFileController read = new NomenclatureFileController();
         public FormNomenclature()
         {
             InitializeComponent();
@@ -24,7 +25,10 @@ namespace AppNetCore
 
         private  void FormNomenclature_Load(object sender, EventArgs e)
         {
-            
+            if(!String.IsNullOrEmpty(File.ReadAllText(FileSettings.NomenclatureFilePath)))
+            {
+                dataGridViewNomenclature.DataSource = read.Read(FileSettings.NomenclatureFilePath);
+            }
         }
         private async Task readFromFile()
         {

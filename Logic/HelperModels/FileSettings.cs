@@ -9,11 +9,10 @@ namespace Logic.Settings
     public static class FileSettings
     {
         private readonly static string sFilePath = Directory.GetCurrentDirectory() + "settings.conf";
-        private static string nFilePath;
-        private static string lFilePath;
-        public static string SettingsFilePath { get { return sFilePath; }}
-        public static string NomenclatureFilePath { get { return nFilePath; }  }
-        public static string LastsFilePath { get { return lFilePath; } }
+        public static string SettingsFilePath { get { return sFilePath; } }
+        public static string NomenclatureFilePath { get; private set; }
+        public static string LastsFilePath { get; private set; }
+        public static string OperationsFilePath { get; private set; }
         public static void LoadSettings()
         {
             TextReader reader = new StreamReader(sFilePath);
@@ -24,10 +23,13 @@ namespace Logic.Settings
                 switch(setting.SettingName)
                 {
                     case "nomenclature":
-                        nFilePath = setting.FilePath;
+                        NomenclatureFilePath = setting.FilePath;
                         break;
                     case "lasts":
-                        lFilePath = setting.FilePath;
+                        LastsFilePath = setting.FilePath;
+                        break;
+                    case "operations":
+                        OperationsFilePath = setting.FilePath;
                         break;
                 }
             }
@@ -43,7 +45,9 @@ namespace Logic.Settings
         {
             List<FileSettingModel> defaultSettings = new List<FileSettingModel>();
             defaultSettings.Add(new FileSettingModel { SettingName = "nomenclature", FilePath = Directory.GetCurrentDirectory()+ "nomenclature.txt" });
-            defaultSettings.Add(new FileSettingModel { SettingName = "lasts", FilePath = Directory.GetCurrentDirectory()+ "lasts" });
+            defaultSettings.Add(new FileSettingModel { SettingName = "lasts", FilePath = Directory.GetCurrentDirectory()+ "operations.txt" });
+            defaultSettings.Add(new FileSettingModel { SettingName = "operations", FilePath = Directory.GetCurrentDirectory() + "operations.txt" });
+
             ChangeSettings(defaultSettings);
         }
     }
