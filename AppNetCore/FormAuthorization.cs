@@ -25,7 +25,7 @@ namespace AppNetCore
         private void btnAutorisation_Click(object sender, EventArgs e)
         {
             AuthLogic authLogic = new AuthLogic();
-            dynamic auth = authLogic.Auth(textBoxLogin.Text, textBoxPassword.Text);
+            БромКлиент auth = authLogic.Auth(textBoxLogin.Text, textBoxPassword.Text);
             Client.bromClient = auth;
             bool flag=true;
             try
@@ -42,11 +42,8 @@ namespace AppNetCore
             {
                 FormMain formMain = new FormMain();
                 this.Visible = false;
-                formMain.ShowDialog();
-                if(formMain.DialogResult == DialogResult.OK)
-                {
-                    Application.Exit();
-                }
+                formMain.Show();
+                
             }
         }
     }

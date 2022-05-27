@@ -23,7 +23,7 @@ namespace Logic.Settings
             {
                 switch(setting.SettingName)
                 {
-                    case "nomeclature":
+                    case "nomenclature":
                         nFilePath = setting.FilePath;
                         break;
                     case "lasts":
@@ -42,8 +42,8 @@ namespace Logic.Settings
         public static void returnToDefaultSettings()
         {
             List<FileSettingModel> defaultSettings = new List<FileSettingModel>();
-            defaultSettings.Add(new FileSettingModel { SettingName = "nomenclature", FilePath = Directory.GetCurrentDirectory() });
-            defaultSettings.Add(new FileSettingModel { SettingName = "lasts", FilePath = Directory.GetCurrentDirectory() });
+            defaultSettings.Add(new FileSettingModel { SettingName = "nomenclature", FilePath = Directory.GetCurrentDirectory()+ "nomenclature.txt" });
+            defaultSettings.Add(new FileSettingModel { SettingName = "lasts", FilePath = Directory.GetCurrentDirectory()+ "lasts" });
             ChangeSettings(defaultSettings);
         }
     }
