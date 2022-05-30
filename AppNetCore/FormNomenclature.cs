@@ -1,5 +1,8 @@
-﻿using Logic.FileLogic;
+﻿using Logic.DataModels;
+using Logic.FileLogic;
+using Logic.HelperModels;
 using Logic.IntegrationLogic;
+using Logic.Models;
 using Logic.Settings;
 using System;
 using System.Collections.Generic;
@@ -15,31 +18,77 @@ namespace AppNetCore
 {
     public partial class FormNomenclature : Form
     {
-        ReadNomenclatureFrom1C from1C = new ReadNomenclatureFrom1C();
-        AuthLogic authLogic = new AuthLogic();
-        NomenclatureFileController read = new NomenclatureFileController();
+        private List<NomenclatureModel> list = new List<NomenclatureModel>();
         public FormNomenclature()
         {
             InitializeComponent();
         }
 
-        private  void FormNomenclature_Load(object sender, EventArgs e)
+        private void FormNomenclature_Load(object sender, EventArgs e)
         {
-            if(!String.IsNullOrEmpty(File.ReadAllText(FileSettings.NomenclatureFilePath)))
+            try
             {
-                dataGridViewNomenclature.DataSource = read.Read(FileSettings.NomenclatureFilePath);
+                if (!String.IsNullOrEmpty(File.ReadAllText(FileSettings.NomenclatureFilePath)))
+                {
+                    list = NomenclatureFileController.Read(FileSettings.NomenclatureFilePath);
+                    dataGridViewNomenclature.DataSource = list;
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Нет Загруженных данных");
+            }
+
         }
-        private async Task readFromFile()
+        private async Task hardRead()
         {
-            await Task.Run(()=>from1C.Read(Client.bromClient, FileSettings.NomenclatureFilePath));
+            await Task.Run(() => LoadController.LoadNomenclature());
             MessageBox.Show("Bruh");
 
         }
         private async void button1_Click(object sender, EventArgs e)
         {
-            await readFromFile();
-            dataGridViewNomenclature.DataSource = read.Read(FileSettings.NomenclatureFilePath);
+            await hardRead();
+            list = NomenclatureFileController.Read(FileSettings.NomenclatureFilePath);
+            dataGridViewNomenclature.DataSource = list;
+        }
+
+        private async void btnAdd_Click(object sender, EventArgs e)
+        {
+            FormCreateOrUpdateNomecnlature form = new FormCreateOrUpdateNomecnlature(null);
+            form.ShowDialog();
+            if (form.DialogResult == DialogResult.OK)
+            {
+                list.Add(form.model);
+                dataGridViewNomenclature.DataSource = null;
+                dataGridViewNomenclature.DataSource = list;
+            }
+        }
+
+        private void btnChange_Click(object sender, EventArgs e)
+        {
+            FormCreateOrUpdateNomecnlature form = new FormCreateOrUpdateNomecnlature(list[dataGridViewNomenclature.SelectedRows[0].Index]);
+            form.ShowDialog();
+            if (form.DialogResult == DialogResult.OK)
+            {
+                list[dataGridViewNomenclature.SelectedRows[0].Index] = form.model;
+                dataGridViewNomenclature.DataSource = null;
+                dataGridViewNomenclature.DataSource = list;
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+            OperationsController.operationsList.Add(new OperationModel
+            {
+                Operation = OperationEnum.Удаление,
+                DataType = DataTypeEnum.Номенклатура,
+                Data = list[dataGridViewNomenclature.SelectedRows[0].Index]
+            });
+            list.RemoveAt(dataGridViewNomenclature.SelectedRows[0].Index);
+            dataGridViewNomenclature.DataSource = null;
+            dataGridViewNomenclature.DataSource = list;
         }
     }
 }

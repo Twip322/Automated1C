@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Logic.HelperModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AppNetCore
@@ -24,6 +26,17 @@ namespace AppNetCore
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.DialogResult = DialogResult.OK;
+        }
+
+        private async void btnDoAll_Click(object sender, EventArgs e)
+        {
+           await Task.Run(()=> OperationsController.LoadAll());
+        }
+
+        private void btnNeedTicket_Click(object sender, EventArgs e)
+        {
+            FormNeedTicket form = new FormNeedTicket();
+            form.ShowDialog();
         }
     }
 }

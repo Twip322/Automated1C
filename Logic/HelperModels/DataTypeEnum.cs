@@ -7,6 +7,6 @@ namespace Logic.HelperModels
     public enum DataTypeEnum
     {
         Номенклатура,
-        Остатки
+        Требование
     }
 }

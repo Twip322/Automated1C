@@ -21,12 +21,15 @@ namespace AppNetCore
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
         }
-
-        private void btnAutorisation_Click(object sender, EventArgs e)
+        private async void loadMetaData(dynamic auth)
         {
-            AuthLogic authLogic = new AuthLogic();
-            БромКлиент auth = authLogic.Auth(textBoxLogin.Text, textBoxPassword.Text);
+            await Task.Run(()=> auth.ЗагрузитьМетаданныеАсинх("Справочники.*, Документы.*", 100));
+        }
+        private  async void btnAutorisation_Click(object sender, EventArgs e)
+        {
+            БромКлиент auth = Authorization1CController.Auth(textBoxLogin.Text, textBoxPassword.Text);
             Client.bromClient = auth;
+            await Task.Run(() => loadMetaData(auth));
             bool flag=true;
             try
             {

@@ -10,6 +10,7 @@ namespace Logic.DataModels
         public OperationEnum Operation { get; set; }
         public DataTypeEnum DataType { get; set; }
         public dynamic Data { get; set; }
+        public dynamic oldData { get; set; }
 
     }
 }
