@@ -15,27 +15,35 @@ namespace AppNetCore
         public FormMain()
         {
             InitializeComponent();
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
         }
 
         private void btnNom_Click(object sender, EventArgs e)
         {
-            FormNomenclature form = new FormNomenclature();
+            FormNomenclatures form = new FormNomenclatures();
             form.Show();
         }
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            Application.Exit();
         }
 
         private async void btnDoAll_Click(object sender, EventArgs e)
         {
-           await Task.Run(()=> OperationsController.LoadAll());
+            FormOperations form = new FormOperations();
+            form.ShowDialog();
         }
 
         private void btnNeedTicket_Click(object sender, EventArgs e)
         {
-            FormNeedTicket form = new FormNeedTicket();
+            FormNeedTickets form = new FormNeedTickets();
+            form.ShowDialog();
+        }
+
+        private void btnTrade_Click(object sender, EventArgs e)
+        {
+            FormTrades form = new FormTrades();
             form.ShowDialog();
         }
     }

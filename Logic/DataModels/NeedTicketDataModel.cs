@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Logic.DataModels
 {
-    public class NeedTicketModel
+    public class NeedTicketDataModel
     {
-        public NomenclatureModel Model { get; set; }
+        public string Name { get; set; }
         public int Count { get; set; }
     }
 }

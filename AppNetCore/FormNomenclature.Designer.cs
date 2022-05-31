@@ -1,4 +1,5 @@
-﻿namespace AppNetCore
+﻿
+namespace AppNetCore
 {
     partial class FormNomenclature
     {
@@ -28,87 +29,78 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridViewNomenclature = new System.Windows.Forms.DataGridView();
-            this.btnHardLoad = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnChange = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewNomenclature)).BeginInit();
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.textBoxArticle = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // dataGridViewNomenclature
+            // textBoxName
             // 
-            this.dataGridViewNomenclature.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewNomenclature.Location = new System.Drawing.Point(24, 39);
-            this.dataGridViewNomenclature.Name = "dataGridViewNomenclature";
-            this.dataGridViewNomenclature.Size = new System.Drawing.Size(585, 382);
-            this.dataGridViewNomenclature.TabIndex = 0;
-            this.dataGridViewNomenclature.Text = "dataGridView1";
+            this.textBoxName.Location = new System.Drawing.Point(49, 36);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(306, 23);
+            this.textBoxName.TabIndex = 0;
             // 
-            // btnHardLoad
+            // textBoxArticle
             // 
-            this.btnHardLoad.Location = new System.Drawing.Point(24, 10);
-            this.btnHardLoad.Name = "btnHardLoad";
-            this.btnHardLoad.Size = new System.Drawing.Size(121, 23);
-            this.btnHardLoad.TabIndex = 1;
-            this.btnHardLoad.Text = "Жёсткая Загрузка";
-            this.btnHardLoad.UseVisualStyleBackColor = true;
-            this.btnHardLoad.Click += new System.EventHandler(this.button1_Click);
+            this.textBoxArticle.Location = new System.Drawing.Point(49, 84);
+            this.textBoxArticle.Name = "textBoxArticle";
+            this.textBoxArticle.Size = new System.Drawing.Size(306, 23);
+            this.textBoxArticle.TabIndex = 1;
             // 
-            // btnAdd
+            // label1
             // 
-            this.btnAdd.Location = new System.Drawing.Point(615, 51);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(115, 23);
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.Text = "Добавить";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(49, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 15);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Наименование";
             // 
-            // btnChange
+            // label2
             // 
-            this.btnChange.Location = new System.Drawing.Point(615, 80);
-            this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(115, 23);
-            this.btnChange.TabIndex = 3;
-            this.btnChange.Text = "Изменить";
-            this.btnChange.UseVisualStyleBackColor = true;
-            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(49, 66);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 15);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Артикул";
             // 
-            // btnDelete
+            // btnSave
             // 
-            this.btnDelete.Location = new System.Drawing.Point(615, 109);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(115, 23);
-            this.btnDelete.TabIndex = 4;
-            this.btnDelete.Text = "Удалить";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnSave.Location = new System.Drawing.Point(118, 113);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(164, 23);
+            this.btnSave.TabIndex = 4;
+            this.btnSave.Text = "Сохранить";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // FormNomenclature
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(748, 449);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnChange);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.btnHardLoad);
-            this.Controls.Add(this.dataGridViewNomenclature);
+            this.ClientSize = new System.Drawing.Size(404, 169);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBoxArticle);
+            this.Controls.Add(this.textBoxName);
             this.Name = "FormNomenclature";
-            this.Text = "FormNomenclature";
-            this.Load += new System.EventHandler(this.FormNomenclature_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewNomenclature)).EndInit();
+            this.Text = "Номеклатура";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridViewNomenclature;
-        private System.Windows.Forms.Button btnHardLoad;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnChange;
-        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.TextBox textBoxArticle;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnSave;
     }
 }

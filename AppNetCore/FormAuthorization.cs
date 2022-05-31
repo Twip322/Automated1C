@@ -27,7 +27,7 @@ namespace AppNetCore
         }
         private  async void btnAutorisation_Click(object sender, EventArgs e)
         {
-            БромКлиент auth = Authorization1CController.Auth(textBoxLogin.Text, textBoxPassword.Text);
+            БромКлиент auth = AuthorizationController.Auth(textBoxLogin.Text, textBoxPassword.Text);
             Client.bromClient = auth;
             await Task.Run(() => loadMetaData(auth));
             bool flag=true;

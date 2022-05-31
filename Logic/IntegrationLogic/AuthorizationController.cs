@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace Logic.IntegrationLogic
 {
-    public static class Authorization1CController
+    public static class AuthorizationController
     {
         public static dynamic Auth(string Login,string Password)
         {

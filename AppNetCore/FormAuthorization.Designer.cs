@@ -83,10 +83,11 @@
             this.btnAutorisation.UseVisualStyleBackColor = true;
             this.btnAutorisation.Click += new System.EventHandler(this.btnAutorisation_Click);
             // 
-            // Form1
+            // FormAuthorization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(400, 186);
             this.Controls.Add(this.labelPassword);
             this.Controls.Add(this.labelLogin);
@@ -94,7 +95,7 @@
             this.Controls.Add(this.textBoxLogin);
             this.Controls.Add(this.btnAutorisation);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Name = "Form1";
+            this.Name = "FormAuthorization";
             this.Text = "Авторизация";
             this.ResumeLayout(false);
             this.PerformLayout();

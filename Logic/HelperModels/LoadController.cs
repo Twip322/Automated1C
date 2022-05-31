@@ -10,7 +10,7 @@ namespace Logic.HelperModels
     {
         public static void LoadNomenclature()
         {
-            Nomenclature1CController.Read(Client.bromClient, FileSettings.NomenclatureFilePath);
+            NomenclatureController.Read(Client.bromClient, FileSettings.NomenclatureFilePath);
         }
     }
 }

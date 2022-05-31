@@ -15,13 +15,13 @@ using System.Windows.Forms;
 
 namespace AppNetCore
 {
-    public partial class FormNeedTicket : Form
+    public partial class FormTrade : Form
     {
-        private List<NeedTicketDataModel> needs = new List<NeedTicketDataModel>();
+        private List<TradeDataModel> trades = new List<TradeDataModel>();
         private DocumentModel ticket;
-        private bool isExisted=false;
+        private bool isExisted = false;
         private List<NomenclatureModel> nomenclatures;
-        public FormNeedTicket(DocumentModel ticket)
+        public FormTrade(DocumentModel ticket)
         {
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -38,14 +38,37 @@ namespace AppNetCore
         }
         private async void LoadDocument()
         {
-            needs = await Task.Run(() => NeedTicketController.LoadNeedTicket(ticket));
-            dataGridViewNeedTicket.DataSource = needs;
+            trades = await Task.Run(() => TradeTicketController.LoadTradeTicket(ticket));
+            dataGridViewNeedTicket.DataSource = trades;
             dataGridViewNeedTicket.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
-        private async void btnDo_Click(object sender, EventArgs e)
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            trades.Add(new TradeDataModel
+            {
+                Name = comboBoxNomenclature.SelectedValue.ToString(),
+                Count = int.Parse(textBoxCount.Text),
+                Price = int.Parse(textBox1.Text)
+            }
+            );
+            dataGridViewNeedTicket.DataSource = null;
+            dataGridViewNeedTicket.DataSource = trades;
+            dataGridViewNeedTicket.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            trades.RemoveAt(dataGridViewNeedTicket.SelectedRows[0].Index);
+            dataGridViewNeedTicket.DataSource = null;
+            dataGridViewNeedTicket.DataSource = trades;
+            dataGridViewNeedTicket.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
+        private void btnDo_Click(object sender, EventArgs e)
         {
             OperationEnum operation;
-            if(isExisted)
+            if (isExisted)
             {
                 operation = OperationEnum.Изменение;
             }
@@ -56,30 +79,11 @@ namespace AppNetCore
             OperationsController.operationsList.Add(new OperationModel
             {
                 Operation = operation,
-                DataType = DataTypeEnum.Требование,
-                Data = needs,
+                DataType = DataTypeEnum.Продажа,
+                Data = trades,
                 oldData = ticket
             });
             this.Close();
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            needs.Add(new NeedTicketDataModel
-            {
-                Name = comboBoxNomenclature.SelectedValue.ToString(),
-                Count = int.Parse(textBoxCount.Text)
-            }
-            );
-            dataGridViewNeedTicket.DataSource = null;
-            dataGridViewNeedTicket.DataSource = needs;
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            needs.RemoveAt(dataGridViewNeedTicket.SelectedRows[0].Index);
-            dataGridViewNeedTicket.DataSource = null;
-            dataGridViewNeedTicket.DataSource = needs;
         }
     }
 }

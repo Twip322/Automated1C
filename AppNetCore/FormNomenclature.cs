@@ -1,7 +1,4 @@
-﻿using Logic.DataModels;
-using Logic.FileLogic;
-using Logic.HelperModels;
-using Logic.IntegrationLogic;
+﻿using Logic.HelperModels;
 using Logic.Models;
 using Logic.Settings;
 using System;
@@ -9,7 +6,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,77 +14,47 @@ namespace AppNetCore
 {
     public partial class FormNomenclature : Form
     {
-        private List<NomenclatureModel> list = new List<NomenclatureModel>();
-        public FormNomenclature()
+        private NomenclatureModel oldModel = new NomenclatureModel { Name = "",Article = ""};
+        public NomenclatureModel model { get; private set; }
+        public FormNomenclature(NomenclatureModel model)
         {
             InitializeComponent();
-        }
-
-        private void FormNomenclature_Load(object sender, EventArgs e)
-        {
-            try
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            if (model!=null)
             {
-                if (!String.IsNullOrEmpty(File.ReadAllText(FileSettings.NomenclatureFilePath)))
-                {
-                    list = NomenclatureFileController.Read(FileSettings.NomenclatureFilePath);
-                    dataGridViewNomenclature.DataSource = list;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Нет Загруженных данных");
-            }
-
-        }
-        private async Task hardRead()
-        {
-            await Task.Run(() => LoadController.LoadNomenclature());
-            MessageBox.Show("Bruh");
-
-        }
-        private async void button1_Click(object sender, EventArgs e)
-        {
-            await hardRead();
-            list = NomenclatureFileController.Read(FileSettings.NomenclatureFilePath);
-            dataGridViewNomenclature.DataSource = list;
-        }
-
-        private async void btnAdd_Click(object sender, EventArgs e)
-        {
-            FormCreateOrUpdateNomecnlature form = new FormCreateOrUpdateNomecnlature(null);
-            form.ShowDialog();
-            if (form.DialogResult == DialogResult.OK)
-            {
-                list.Add(form.model);
-                dataGridViewNomenclature.DataSource = null;
-                dataGridViewNomenclature.DataSource = list;
+                this.model = model;
+                this.oldModel = model;
+                textBoxName.Text = model.Name;
+                textBoxArticle.Text = model.Article;
             }
         }
 
-        private void btnChange_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
-            FormCreateOrUpdateNomecnlature form = new FormCreateOrUpdateNomecnlature(list[dataGridViewNomenclature.SelectedRows[0].Index]);
-            form.ShowDialog();
-            if (form.DialogResult == DialogResult.OK)
+            OperationEnum operation;
+            if (model!=null)
             {
-                list[dataGridViewNomenclature.SelectedRows[0].Index] = form.model;
-                dataGridViewNomenclature.DataSource = null;
-                dataGridViewNomenclature.DataSource = list;
+                 operation= OperationEnum.Изменение;
             }
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-
-            OperationsController.operationsList.Add(new OperationModel
+            else
             {
-                Operation = OperationEnum.Удаление,
+                operation = OperationEnum.Добавление;
+            }
+            model = new NomenclatureModel
+            {
+                Name = textBoxName.Text,
+                Article = textBoxArticle.Text
+            };
+            OperationsController.operationsList.Add(new Logic.DataModels.OperationModel
+            {
+                Operation = operation,
                 DataType = DataTypeEnum.Номенклатура,
-                Data = list[dataGridViewNomenclature.SelectedRows[0].Index]
+                Data = model,
+                oldData = oldModel
+
             });
-            list.RemoveAt(dataGridViewNomenclature.SelectedRows[0].Index);
-            dataGridViewNomenclature.DataSource = null;
-            dataGridViewNomenclature.DataSource = list;
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }

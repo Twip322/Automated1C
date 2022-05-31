@@ -12,6 +12,8 @@ namespace Logic.Settings
         public static string SettingsFilePath { get { return sFilePath; } }
         public static string NomenclatureFilePath { get; private set; }
         public static string LastsFilePath { get; private set; }
+        public static string NeedsFilePath { get; private set; }
+        public static string TradesFilePath { get; private set; }
         public static string OperationsFilePath { get; private set; }
         public static void LoadSettings()
         {
@@ -28,8 +30,14 @@ namespace Logic.Settings
                     case "lasts":
                         LastsFilePath = setting.FilePath;
                         break;
+                    case "needs":
+                        NeedsFilePath = setting.FilePath;
+                        break;
                     case "operations":
                         OperationsFilePath = setting.FilePath;
+                        break;
+                    case "trades":
+                        TradesFilePath = setting.FilePath;
                         break;
                 }
             }
@@ -46,6 +54,8 @@ namespace Logic.Settings
             List<FileSettingModel> defaultSettings = new List<FileSettingModel>();
             defaultSettings.Add(new FileSettingModel { SettingName = "nomenclature", FilePath = Directory.GetCurrentDirectory()+ "nomenclature.txt" });
             defaultSettings.Add(new FileSettingModel { SettingName = "lasts", FilePath = Directory.GetCurrentDirectory()+ "operations.txt" });
+            defaultSettings.Add(new FileSettingModel { SettingName = "needs", FilePath = Directory.GetCurrentDirectory() + "needs.txt" });
+            defaultSettings.Add(new FileSettingModel { SettingName = "trades", FilePath = Directory.GetCurrentDirectory() + "trades.txt" });
             defaultSettings.Add(new FileSettingModel { SettingName = "operations", FilePath = Directory.GetCurrentDirectory() + "operations.txt" });
 
             ChangeSettings(defaultSettings);

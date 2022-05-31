@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 
 namespace Logic.IntegrationLogic
 {
-    public static class Nomenclature1CController
+    public static class NomenclatureController
     {
 		public static void Read(БромКлиент client, string fileName)
         {
